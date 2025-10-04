@@ -1,0 +1,6 @@
+managing list
+1. Original list, never manipulated, only used as reference point and we add items as the 
+user inputs them
+2. List on display, gets sorted, reversed, 
+
+this way, sort a to z only sorts list on display 

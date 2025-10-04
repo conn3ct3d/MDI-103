@@ -32,3 +32,4 @@ for (name, grades) in studentGrades {
     print("Avg: \(currentStudentAverage) \n")
 }
 print("The highest average belonged to \(highestAverageName), with an average of \(highestAverage)")
+

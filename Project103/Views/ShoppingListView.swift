@@ -2,18 +2,17 @@
 //  ShoppingListView.swift
 //  Project103
 //
-//  Created by mbair on 9/29/25.
+//  Created by Emiliano on 9/29/25.
 //
 
 import SwiftUI
 
 
 struct ShoppingListView: View {
-    @State private var shoppingList: [String] = ["Eggs", "Apples"]
+    @State private var shoppingList: [String] = ["Eggs", "Apples", "Frozen Waffles", "Yogurt"]
     @State private var newItem: String = ""
+    @State private var listOnDisplay:[String] = []
     var body: some View {
-        
-        
         
         NavigationView{
             
@@ -29,7 +28,7 @@ struct ShoppingListView: View {
                     
                     // List of items in the shopping list
                     List {
-                        ForEach(shoppingList, id:\.self){ item in
+                        ForEach(listOnDisplay, id:\.self){ item in
                             Text(item)
                             
                         }
@@ -70,11 +69,17 @@ struct ShoppingListView: View {
             
             .toolbar{
                 Menu {
-                    Button("Sort A -> Z"){
-                         
+                    Button("Sort A > Z"){
+                         sortAtoZ()
                     }
                     Button("Reverse Order"){
-                        
+                        reverseList()
+                    }
+                    Button("Undo Sorting"){
+                        listOnDisplay = shoppingList
+                    }
+                    .onAppear{
+                        listOnDisplay = shoppingList
                     }
                 }
              label : {
@@ -90,16 +95,15 @@ struct ShoppingListView: View {
     private func addItem(item:String){
         if !item.isEmpty{
             shoppingList.append(item)
+            listOnDisplay.append(item)
         }
     }
-//    func sortAlphabetically (_ arrays: [[String]]) ->  [[String]] {
-//        return arrays.sorted {
-//            a,b in
-//        }
-//    }
-//    func reverseItemList() -> {
-//        //code
-//    }
+    func sortAtoZ() {
+        listOnDisplay.sort()
+    }
+    func reverseList() {
+        listOnDisplay.reverse()
+    }
 }   // END - ShoppingListView
 
 #Preview {
